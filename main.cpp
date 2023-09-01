@@ -1,5 +1,6 @@
 #include <iostream>
 #include "myClass.h"
+#include "Registro.h"
 
 using namespace std;
 
@@ -24,4 +25,13 @@ int main() {
     myClass<int> a(3,4);
     myClass<char> a('d','R');
     myClass<float> a(3.14,4.59);
+}
+
+void PruebaOrdenamiento() {
+    Registro a, b;
+    if (a.getDate() > b.getDate()) {
+        if (a > b) {
+            
+        }
+    }
 }
