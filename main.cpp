@@ -1,6 +1,7 @@
 #include <iostream>
 #include "myClass.h"
 #include "Registro.h"
+#include <vector>
 
 using namespace std;
 
@@ -29,9 +30,20 @@ int main() {
 
 void PruebaOrdenamiento() {
     Registro a, b;
+    vector<Registro> v;
+    v.push_back(a);
+    v.push_back(b);
+
+    // swap de variables
+    Registro aux;
+    aux = v[1];
+    v[1] = v[0];
+    v[0] = aux;
+
+    v[0].getDate();
     if (a.getDate() > b.getDate()) {
         if (a > b) {
-            
+
         }
     }
 }
