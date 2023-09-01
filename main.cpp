@@ -2,6 +2,7 @@
 #include "myClass.h"
 #include "Registro.h"
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -39,6 +40,7 @@ void PruebaOrdenamiento() {
     aux = v[1];
     v[1] = v[0];
     v[0] = aux;
+    leerArchivo("Path/a/bitacora.txt", v);
 
     v[0].getDate();
     if (a.getDate() > b.getDate()) {
@@ -46,4 +48,20 @@ void PruebaOrdenamiento() {
 
         }
     }
+}
+
+void leerArchivo(string path, vector<Registro> &v) {
+    ifstream myfile;
+    string month;
+    int day;
+    string hour; // hh:mm:ss
+    string ip;
+    string message;
+
+    myfile.open(path);
+    while (!myfile.eof()) {
+        myfile >> month >> day >> hour >> ip >> message;
+        v.push_back(Registro());
+    }
+    myfile.close();
 }
