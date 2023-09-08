@@ -70,3 +70,42 @@ void leerArchivo(string path, vector<Registro> &v) {
         r.process();
     }
 }
+
+template <typename T>
+void swap(vector<T> &myVector, int i, int j) {
+    T aux = myVector[j];
+    myVector[j] = myVector[i];
+    myVector[i] = aux;
+}
+
+template <typename T>
+void suffle(vector<T> &myVector) {
+    int n = myVector.size();
+    int k = rand() % 1000;
+    int i,j;
+    do {
+        i = rand() % n;
+        j = rand() % n;
+        swap(myVector,i,j);
+    } while (--k > 0);
+}
+
+template <typename T>
+bool isSorted(vector<T> &myVector) {
+    int n = myVector.size();
+    for (int i = 0; i < n - 1; i++) {
+        if (myVector[i] > myVector[i+1])
+            return false;
+    }
+    return true;
+}
+
+template <typename T>
+void fastBogoSort(vector<T> &myVector) {
+    int n = myVector.size();
+    for (int i = 1; i < log(n); i++) {
+        suffle(myVector);
+        if (isSorted(myVector))
+            return;
+    }
+}
