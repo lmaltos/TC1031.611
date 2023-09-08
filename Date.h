@@ -6,13 +6,16 @@ using namespace std;
 
 class Date {
     private:
-    string month; // Aug, Sep, Oct, ...
+    //string month; // Aug, Sep, Oct, ...
     int month_i; // mes 1, 2, 3, 4, ...
     int day;
     int hour;
     int minute;
     int second;
     public:
+    Date();
+    Date(int,int); // mes y dia
+    Date(int,int,int,int,int); // mes, dia, hh, mm, ss
     bool operator>(const Date&) const;
 };
 

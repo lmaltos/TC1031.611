@@ -60,8 +60,13 @@ void leerArchivo(string path, vector<Registro> &v) {
 
     myfile.open(path);
     while (!myfile.eof()) {
-        myfile >> month >> day >> hour >> ip >> message;
-        v.push_back(Registro());
+        myfile >> month >> day >> hour >> ip;
+        getline(myfile,message);
+        v.push_back(Registro(month,day,hour,ip,message));
     }
     myfile.close();
+    
+    for (Registro r : v) {
+        r.process();
+    }
 }
