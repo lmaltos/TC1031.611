@@ -30,24 +30,11 @@ int main() {
 }
 
 void PruebaOrdenamiento() {
-    Registro a, b;
     vector<Registro> v;
-    v.push_back(a);
-    v.push_back(b);
-
-    // swap de variables
-    Registro aux;
-    aux = v[1];
-    v[1] = v[0];
-    v[0] = aux;
+    Date fecha_ini, fecha_fin;
     leerArchivo("Path/a/bitacora.txt", v);
-
-    v[0].getDate();
-    if (a.getDate() > b.getDate()) {
-        if (a > b) {
-
-        }
-    }
+    fastBogoSort(v);
+    
 }
 
 void leerArchivo(string path, vector<Registro> &v) {
