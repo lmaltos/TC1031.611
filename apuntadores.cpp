@@ -108,14 +108,87 @@ void Decalogo07() {
     *p = 12;
     cout << "p = " << p << endl;
     cout << "*p = " << *p << endl;
-    p = new int(34);
+    p = new int(34); // no se libero la referencia anterior :(
     cout << "Despues de 2do new int" << endl;
     cout << "p = " << p << endl;
     cout << "*p = " << *p << endl;
     delete p;
 }
 
+void Decalogo09() {
+    int *p, *q;
+    int a = 12,b = 23,c = 34;
+    cout << "&a = " << &a << endl;
+    cout << "&b = " << &b << endl;
+    cout << "&c = " << &c << endl;
+    cout << "a =\t" << a << "\tb =\t" << b << "\tc =\t" << c << endl;
+    p = &a;
+    q = &c;
+    if (p == q) {
+        cout << "p == q\t" << p << " == " << q << endl;
+    }
+    else {
+        cout << "p != q\t" << p << " != " << q << endl;
+    }
+    p++;
+    cout << "p++" << endl;
+    if (p == q) {
+        cout << "p == q\t" << p << " == " << q << endl;
+    }
+    else {
+        cout << "p != q\t" << p << " != " << q << endl;
+    }
+    p++;
+    cout << "p++" << endl;
+    if (p == q) {
+        cout << "p == q\t" << p << " == " << q << endl;
+    }
+    else {
+        cout << "p != q\t" << p << " != " << q << endl;
+    }
+}
+
+void Decalogo08() {
+    int *p;
+    int a = 12,b = 23,c = 34;
+    cout << "&a = " << &a << endl;
+    cout << "&b = " << &b << endl;
+    cout << "&c = " << &c << endl;
+    cout << "a =\t" << a << "\tb =\t" << b << "\tc =\t" << c << endl;
+    p = &a;
+    *p = 45;
+    cout << "p = &a; *p = 45" << endl;
+    cout << "a =\t" << a << "\tb =\t" << b << "\tc =\t" << c << endl;
+    cout << "p = " << p;
+    p++;
+    cout << "\tp++\t" << p << endl;
+    *p = 56;
+    cout << "a =\t" << a << "\tb =\t" << b << "\tc =\t" << c << endl;
+    cout << "p = " << p;
+    p++;
+    cout << "\tp++\t" << p << endl;
+    *p = 67;
+    cout << "a =\t" << a << "\tb =\t" << b << "\tc =\t" << c << endl;
+}
+
+void Decalogo10() {
+    int *p;
+    p = new int;
+    *p = 5;
+    cout << "*p = 5;\t*p = " << *p << endl;
+    *p = *p + 2;
+    cout << "*p = *p + 2;\t*p = " << *p << endl;
+    //*p++; // free(): invalid pointer
+    (*p)++;
+    cout << "(*p)++;\t*p = " << *p << endl;
+    *p *= 7;
+    cout << "*p *= 7;\t*p = " << *p << endl;
+    *p /= 4;
+    cout << "*p /= 4;\t*p = " << *p << endl;
+    delete p;
+}
+
 int main() {
     //test1();
-    Decalogo07();
+    Decalogo10();
 }
