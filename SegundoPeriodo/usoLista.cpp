@@ -1,5 +1,7 @@
 #include "linkedList.h"
-#include <string>
+#include <iostream>
+
+using namespace std;
 
 int main() {
     linkedList<int> listaInt;
@@ -11,11 +13,22 @@ int main() {
     listaInt.addFirst(6);
     listaInt.addFirst(7);
     listaInt.print();
+    listaInt.addLast(10);
+    listaInt.addLast(11);
+    listaInt.addLast(12);
+    listaInt.addLast(13);
+    listaInt.print();
 
     linkedList<std::string> listaStr;
     listaStr.addFirst("Olla");
     listaStr.addFirst("Estufa");
     listaStr.addFirst("Jarra");
     listaStr.addFirst("Plato");
+    listaStr.print();
+    listaStr.addLast("Tenedor");
+    listaStr.addLast("Cuchara");
+    listaStr.addLast("Cuchillo");
+    listaStr.addFirst("Sarten");
+    cout << "listaStr[5] = " << listaStr[5] << endl;
     listaStr.print();
 }

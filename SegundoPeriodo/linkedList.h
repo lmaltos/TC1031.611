@@ -8,10 +8,13 @@ class linkedList {
   private:
     node<T> *head;
     int size;
+    node<T>* getData(int);
   public:
     linkedList();
     ~linkedList();
     void addFirst(T);
+    void addLast(T);
+    T operator[](int);
     void print();
 };
 
@@ -42,6 +45,41 @@ void linkedList<S>::addFirst(S data) {
     //nodo->setNext(head); // se realiza en el constructor
     head = nodo;
     size++;
+}
+
+template <class S>
+void linkedList<S>::addLast(S data) {
+    node<S> *last,*newNodo;
+    newNodo = new node<S>(data);
+    last = head;
+    if (last != NULL) {
+        while (last->getNext() != NULL) {
+            last = last->getNext();
+        }
+        last->setNext(newNodo);
+    }
+    else {
+        head = newNodo;
+    }
+    size++;
+}
+
+template <class S>
+node<S>* linkedList<S>::getData(int k) {
+    node<S> *last;
+    last = head;
+    if (k >= size)
+        throw std::out_of_range("Index k > size");
+    while (k > 0) {
+        last = last->getNext();
+        k--;
+    }
+    return last;
+}
+
+template <class S>
+S linkedList<S>::operator[](int k) {
+    return getData(k)->getData();
 }
 
 template <class S>
