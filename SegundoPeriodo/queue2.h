@@ -8,6 +8,7 @@ class queue2 {
     node<T> *tail;
   public:
     queue2();
+    ~queue2();
     void push(T);
     void pop();
     T front();
@@ -18,6 +19,25 @@ class queue2 {
 template <typename T>
 queue2<T>::queue2() {
     tail = NULL;
+}
+
+template <typename T>
+queue2<T>::~queue2() {
+    node<T>* nodo, *next;
+    if (isEmpty())
+        return; // la fila esta vacia, no hay nada que borrar
+    nodo = tail->getNext(); // primer elmento de la fila
+    while (nodo != tail) {
+        next = nodo->getNext(); // guardar la referencia al siguiente elemento antes de borrarlo
+        delete nodo; // liberar memoria del nodo
+        nodo = next; // actualizar siguiente nodo en la fila a borrar
+    }
+    delete tail; // eliminar ultimo nodo
+
+    // forma alternativa
+    //while (!isEmpty()) {
+    //    pop();
+    //}
 }
 
 template <typename T>
@@ -35,37 +55,36 @@ void queue2<T>::push(T dato) {
 }
 
 template <typename T>
-void queue<T>::pop() {
+void queue2<T>::pop() {
     if (isEmpty()) {
         return;
     }
-    if (Frente == Final) {
-        Frente = Final = -1;
+    if (tail->getNext() == tail) { //primer elemento == ultimo elemento, ie solo queda un elemento
+        delete tail;
+        tail = NULL;
     }
     else {
-        Frente++;
-        //if (Frente == QUEUE_MAX_SIZE)
-        //    Frente = 0;
-        //Frente = Frente % QUEUE_MAX_SIZE;
-        Frente %= QUEUE_MAX_SIZE;
-        //++Frente %= QUEUE_MAX_SIZE;
+        node<T>* first = tail->getNext(); // primero elemento de la fila
+        node<T>* second = first->getNext(); // segundo elemento de la fila
+        tail->setNext(second); // se actualiza el primer elemento de la fila
+        delete first;
     }
 }
 
 template <typename T>
-T queue<T>::front() {
-    return datos[Frente];
+T queue2<T>::front() {
+    node<T>* first = tail->getNext(); // primero elemento de la fila
+    return first->getData();
 }
 
 template <typename T>
-bool queue<T>::isEmpty() {
-    return (Frente == -1) && (Final == -1);
+bool queue2<T>::isEmpty() {
+    return tail == NULL;
 }
 
 template <typename T>
-bool queue<T>::isFull() {
-    //return (Final + 1 == Frente) || (Frente == 0 && Final == QUEUE_MAX_SIZE - 1);
-    return (Final + 1) % QUEUE_MAX_SIZE == Frente;
+bool queue2<T>::isFull() {
+    return false;
 }
 
 #endif

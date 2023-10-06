@@ -1,10 +1,10 @@
 #include <iostream>
-#include "queue.h"
+#include "queue2.h"
 
 using namespace std;
 
 int main() {
-    queue<char> fila;
+    queue2<char> fila;
     cout << "fila.isEmpty() = " << fila.isEmpty() << endl;
     cout << "fila.isFull() = " << fila.isFull() << endl;
     fila.push('q');
