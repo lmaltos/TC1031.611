@@ -42,4 +42,16 @@ int main() {
         else
             cout << " ";
     }
+    cout << "Preorden" << endl;
+    arbol.printPreorden();
+    cout << endl;
+    cout << "Inorden" << endl;
+    arbol.printInorden();
+    cout << endl;
+    cout << "Postorden" << endl;
+    arbol.printPostorden();
+    cout << endl;
+    cout << "Por Nivel" << endl;
+    arbol.printPorNivel();
+    cout << endl;
 }

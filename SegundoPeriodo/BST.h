@@ -1,6 +1,7 @@
 #ifndef BST_H
 #define BST_H
 #include "nodeT.h"
+#include "queue2.h"
 
 template <typename T>
 class BST {
@@ -13,6 +14,13 @@ class BST {
     bool search(T);
     void add(T);
     void pop(T);
+    void printPreorden();
+    void preorden(nodeT<T>*);
+    void printInorden();
+    void inorden(nodeT<T>*);
+    void printPostorden();
+    void postorden(nodeT<T>*);
+    void printPorNivel();
 };
 
 template <typename T>
@@ -127,4 +135,65 @@ void BST<T>::pop(T data) {
     }
 }
 
+template <typename T>
+void BST<T>::printPreorden(){
+    preorden(root);
+}
+
+template <typename T>
+void BST<T>::preorden(nodeT<T>* r){
+    if (r == NULL)
+        return;
+    std::cout << r->Data() << " ";
+    preorden(r->Left());
+    preorden(r->Right());
+}
+
+template <typename T>
+void BST<T>::printInorden(){
+    inorden(root);
+}
+
+template <typename T>
+void BST<T>::inorden(nodeT<T>* r){
+    if (r == NULL)
+        return;
+    inorden(r->Left());
+    std::cout << r->Data() << " ";
+    inorden(r->Right());
+}
+
+template <typename T>
+void BST<T>::printPostorden(){
+    postorden(root);
+}
+
+template <typename T>
+void BST<T>::postorden(nodeT<T>* r){
+    if (r == NULL)
+        return;
+    postorden(r->Left());
+    postorden(r->Right());
+    std::cout << r->Data() << " ";
+}
+
+template <typename T>
+void BST<T>::printPorNivel(){
+    queue2<nodeT<T>*> fila;
+    nodeT<T> *nodo;
+    if (root != NULL) {
+        fila.push(root);
+    }
+    while (!fila.isEmpty()) {
+        nodo = fila.front();
+        if (nodo->Left() != NULL) { // se agrega hijo izquierdo en caso de existir
+            fila.push(nodo->Left());
+        }
+        if (nodo->Right() != NULL) { // se agrega hijo derecho en caso de existir
+            fila.push(nodo->Right());
+        }
+        fila.pop(); // remueve primer elemento de la fila que ya fue procesado
+        std::cout << nodo->Data() << " ";
+    }
+}
 #endif
