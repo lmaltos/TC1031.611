@@ -5,7 +5,7 @@
 
 template <typename T>
 class BST {
-  private:
+  protected:
     nodeT<T> *root; // no espeficicamos el tipo de dato a guardar en el nodo
   public:
     BST();
