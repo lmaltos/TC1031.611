@@ -21,6 +21,7 @@ class BST {
     void printPostorden();
     void postorden(nodeT<T>*);
     void printPorNivel();
+    int calcNivel(nodeT<T>*);
 };
 
 template <typename T>
@@ -181,6 +182,7 @@ template <typename T>
 void BST<T>::printPorNivel(){
     queue2<nodeT<T>*> fila;
     nodeT<T> *nodo;
+    int nivelActual = 0;
     if (root != NULL) {
         fila.push(root);
     }
@@ -193,7 +195,23 @@ void BST<T>::printPorNivel(){
             fila.push(nodo->Right());
         }
         fila.pop(); // remueve primer elemento de la fila que ya fue procesado
+        if (calcNivel(nodo) != nivelActual) {
+            std::cout << std::endl;
+            nivelActual++; // hubo un cambio de nivel
+        }
         std::cout << nodo->Data() << " ";
     }
 }
+
+template <typename T>
+int BST<T>::calcNivel(nodeT<T> *p){
+    int nivel = 0;
+    nodeT<T> *q = root;
+    while (q != p) {
+        q = q->Data() > p->Data() ? q->Left() : q->Right();
+        nivel++;
+    }
+    return nivel;
+}
+
 #endif
