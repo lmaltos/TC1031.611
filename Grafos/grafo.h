@@ -12,6 +12,7 @@ class grafo {
     void setAdjacency(int,int);
     bool isAdjacent(int,int);
     void BreadthFirst();
+    void DepthFirst();
 };
 
 #endif

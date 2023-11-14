@@ -1,5 +1,6 @@
 #include "grafo.h"
 #include "../SegundoPeriodo/queue2.h"
+#include "../SegundoPeriodo/stack2.h"
 #include <iostream>
 
 grafo::grafo(int n) {
@@ -65,4 +66,37 @@ void grafo::BreadthFirst() {
     }
     std::cout << std::endl;
     delete[] visitado;
+}
+
+void grafo::DepthFirst(){
+    bool *visitado;
+    stack2<int> pila;
+    // inicializar el estatus de todos los nodos a "en espera"
+    visitado = new bool[nodos];
+    for (int i = 0; i < nodos; i++) {
+        visitado[i] = false;
+    }
+    for (int nodo = 0;nodo < nodos; nodo++) {
+        if (!visitado[nodo]) {
+            pila.push(nodo);
+            while (!pila.isEmplty()) {
+                int nodoActual = pila.top();
+                pila.pop(); // removemos el primer nodo
+                if (!visitado[nodoActual]) {
+                    std::cout << nodoActual << " ";
+                    visitado[nodoActual] = true;
+                    for (int j = 0; j < nodos; j++) {
+                        if (isAdjacent(nodoActual,j)) {
+                            if (!visitado[j]) {
+                                pila.push(j);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    std::cout << std::endl;
+    delete[] visitado;
+
 }

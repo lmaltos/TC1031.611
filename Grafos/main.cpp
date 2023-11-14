@@ -20,6 +20,9 @@ int main() {
         }
     }
     archivo.close();
+    cout << "Breadth First: ";
     G.BreadthFirst();
+    cout << "Depth First: ";
+    G.DepthFirst();
     return 0;
 }
