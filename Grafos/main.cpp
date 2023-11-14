@@ -1,9 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "grafo.h"
+#include "grafoLA.h"
 
 using namespace std;
-int main() {
+int main_MA() {
     ifstream archivo;
     int n;
     bool b;
@@ -25,4 +27,25 @@ int main() {
     cout << "Depth First: ";
     G.DepthFirst();
     return 0;
+}
+
+int main() {
+    grafoLA G;
+    ifstream archivo;
+    string id,linea;
+    archivo.open("grafoEjemploLA.txt");
+    while (!archivo.eof()) {
+        archivo >> id;
+        cout << "Agrega nodo " << id << endl;
+        nodo *n = G.addNodo(id);
+        getline(archivo,linea); //E| A B C H G
+        stringstream ss(linea);
+        while (!ss.eof()) {
+            ss >> id;
+            cout << "Agrega adyacencia " << id << endl;
+            G.addAdyacencia(n,id);
+        }
+    }
+    archivo.close();
+    G.DepthFirst();
 }
